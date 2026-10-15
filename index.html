@@ -23,7 +23,7 @@
             --sand: #EAE6D9;
             --coffee-dark: #3A2E28;
             --coffee-light: #8C7B6C;
-            --accent: #D4AF37; /* Subtle gold */
+            --accent: #D4AF37;
         }
         
         body {
@@ -92,6 +92,25 @@
             border-color: var(--coffee-dark);
             background-color: var(--sand);
         }
+
+        /* Video Section Specifics */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+        .video-wrapper iframe,
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-[#3A2E28] selection:text-white">
@@ -111,6 +130,7 @@
             <button onclick="scrollToSection('about')" class="hover:text-[#8C7B6C] transition-colors">Story</button>
             <button onclick="openMenuPage()" class="hover:text-[#8C7B6C] transition-colors">Menu</button>
             <button onclick="scrollToSection('gallery')" class="hover:text-[#8C7B6C] transition-colors">Gallery</button>
+            <button onclick="scrollToSection('videos')" class="hover:text-[#8C7B6C] transition-colors">Videos</button>
             <button onclick="scrollToSection('quiz')" class="hover:text-[#8C7B6C] transition-colors">Find Your Brew</button>
             <button onclick="scrollToSection('faq')" class="hover:text-[#8C7B6C] transition-colors">FAQ</button>
         </div>
@@ -131,16 +151,16 @@
         <button onclick="toggleMobileMenu(); scrollToSection('about')" class="text-2xl serif text-[#3A2E28] hover:text-[#8C7B6C]">Story</button>
         <button onclick="toggleMobileMenu(); openMenuPage()" class="text-2xl serif text-[#3A2E28] hover:text-[#8C7B6C]">Menu</button>
         <button onclick="toggleMobileMenu(); scrollToSection('gallery')" class="text-2xl serif text-[#3A2E28] hover:text-[#8C7B6C]">Gallery</button>
+        <button onclick="toggleMobileMenu(); scrollToSection('videos')" class="text-2xl serif text-[#3A2E28] hover:text-[#8C7B6C]">Videos</button>
         <button onclick="toggleMobileMenu(); scrollToSection('quiz')" class="text-2xl serif text-[#3A2E28] hover:text-[#8C7B6C]">Find Your Brew</button>
     </div>
 
     <!-- MAIN CONTENT WRAPPER -->
     <main id="main-content">
         
-        <!-- Hero Section with Video -->
+        <!-- Hero Section with Video Background -->
         <header class="relative h-screen w-full overflow-hidden flex items-center justify-center">
             <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-90">
-                <!-- Using a high quality aesthetic coffee video -->
                 <source src="https://videos.pexels.com/video-files/3045161/3045161-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
             
@@ -244,8 +264,44 @@
             </div>
         </section>
 
+        <!-- NEW VIDEO SECTION -->
+        <section id="videos" class="py-24 bg-[#EAE6D9]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal-up">
+                    <span class="text-[#8C7B6C] text-xs tracking-[0.3em] uppercase block mb-4">Behind the Scenes</span>
+                    <h2 class="text-5xl serif text-[#3A2E28]">Our Process</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Video 1 -->
+                    <div class="reveal-up bg-[#FDFBF7] p-4 shadow-sm">
+                        <div class="video-wrapper mb-4">
+                            <video controls poster="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop">
+                                <source src="https://videos.pexels.com/video-files/2882118/2882118-hd_1920_1080_30fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="text-2xl serif text-[#3A2E28] mb-2">The Perfect Pour Over</h3>
+                        <p class="text-[#8C7B6C] text-sm font-light">Watch our head barista demonstrate the precision required for a flawless V60 extraction.</p>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="reveal-up bg-[#FDFBF7] p-4 shadow-sm">
+                        <div class="video-wrapper mb-4">
+                            <video controls poster="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop">
+                                <source src="https://videos.pexels.com/video-files/4253356/4253356-hd_1920_1080_25fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="text-2xl serif text-[#3A2E28] mb-2">Latte Art Mastery</h3>
+                        <p class="text-[#8C7B6C] text-sm font-light">From milk texture to the final rosetta. The art that goes into every cup we serve.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Interactive Quiz Section -->
-        <section id="quiz" class="py-24 bg-[#EAE6D9] relative overflow-hidden">
+        <section id="quiz" class="py-24 bg-[#FDFBF7] relative overflow-hidden">
             <div class="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
             <div class="container mx-auto px-6 max-w-4xl relative z-10">
                 <div class="text-center mb-12 reveal-up">
@@ -253,7 +309,7 @@
                     <p class="text-[#3A2E28]/70">Answer 3 simple questions to discover your ideal coffee match.</p>
                 </div>
 
-                <div id="quiz-container" class="bg-[#FDFBF7] p-8 md:p-12 shadow-xl rounded-sm reveal-up">
+                <div id="quiz-container" class="bg-[#FDFBF7] border border-[#EAE6D9] p-8 md:p-12 shadow-xl rounded-sm reveal-up">
                     <!-- Step 1 -->
                     <div id="q-step-1" class="quiz-step">
                         <h3 class="text-2xl serif mb-6 text-[#3A2E28]">1. How do you like to start your morning?</h3>
@@ -691,4 +747,3 @@
     </script>
 </body>
 </html>
-
