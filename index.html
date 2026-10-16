@@ -1,1 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA JEWELRY | Timeless Elegance</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #F9F7F2; /* Warm off-white */
+            --text-main: #2A2A2A;
+            --text-muted: #6B6B6B;
+            --accent-gold: #C5A065;
+            --accent-dark: #1A1A1A;
+            --border-light: #EAEAEA;
+            
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            
+            --container-width: 1400px;
+            --section-padding: 100px 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .serif-text {
+            font-family: var(--font-serif);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- Utility Classes --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: var(--accent-dark);
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-dark);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-dark);
+            border: 1px solid var(--accent-dark);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-dark);
+            color: white;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(249, 247, 242, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: padding 0.3s ease;
+        }
+
+        .top-bar {
+            background-color: var(--accent-dark);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-style: italic;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: var(--accent-dark);
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 35px;
+        }
+
+        .main-nav a {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-dark);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* --- Professional Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0; 
+        }
+
+        .hero-bg-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 25s infinite alternate ease-in-out;
+            filter: brightness(0.85) contrast(1.05);
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 20px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .hero-title {
+            font-size: 5.5rem;
+            line-height: 1.05;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            margin-bottom: 45px;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-hero {
+            padding: 18px 40px;
+            background-color: white;
+            color: var(--accent-dark);
+            border: 1px solid white;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.4s ease;
+        }
+
+        .btn-hero:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-hero-outline {
+            padding: 18px 40px;
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.4s ease;
+        }
+
+        .btn-hero-outline:hover {
+            background-color: white;
+            color: var(--accent-dark);
+            border-color: white;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+            60% { transform: translateY(-5px) translateX(-50%); }
+        }
+
+        /* --- Problem Statement --- */
+        .problem-statement {
+            padding: var(--section-padding);
+            text-align: center;
+            background: white;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .problem-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-dark);
+        }
+
+        .problem-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- Benefits / Value --- */
+        .benefits {
+            padding: var(--section-padding);
+            background-color: var(--bg-color);
+        }
+
+        .benefit-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .benefit-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .benefit-img {
+            flex: 1;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .benefit-img img {
+            width: 100%;
+            height: 100%;
+            transition: transform 1.5s ease;
+        }
+
+        .benefit-row:hover .benefit-img img {
+            transform: scale(1.05);
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .benefit-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* --- Product Features & Social Proof --- */
+        .features {
+            padding: var(--section-padding);
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        /* --- What You Get (Gallery) --- */
+        .what-you-get {
+            padding: var(--section-padding);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            height: 600px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* --- Competitor Comparison --- */
+        .comparison {
+            padding: var(--section-padding);
+            background: #fff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table th {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+        }
+
+        .comparison-table .aurelia-col {
+            background-color: rgba(197, 160, 101, 0.1);
+            font-weight: 600;
+        }
+
+        .check { color: green; }
+        .cross { color: red; opacity: 0.5; }
+
+        /* --- FAQ --- */
+        .faq {
+            padding: var(--section-padding);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            padding: 20px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        /* --- Price Discount Section --- */
+        .price-discount {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, #f9f7f2 0%, #ffffff 100%);
+        }
+
+        .discount-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .discount-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .discount-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+            border-color: var(--accent-gold);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--accent-dark);
+            color: white;
+            padding: 6px 40px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .discount-card.featured {
+            border: 2px solid var(--accent-gold);
+            background: linear-gradient(to bottom, #fffdf8, #ffffff);
+        }
+
+        .discount-card.featured .discount-badge {
+            background: var(--accent-gold);
+        }
+
+        .discount-tier {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .discount-price {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--accent-dark);
+            margin-bottom: 5px;
+        }
+
+        .discount-original {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 20px;
+        }
+
+        .discount-savings {
+            display: inline-block;
+            background: rgba(197, 160, 101, 0.15);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .discount-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .discount-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .discount-features li:last-child {
+            border-bottom: none;
+        }
+
+        .discount-features li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .discount-card .btn {
+            width: 100%;
+        }
+
+        /* --- Value Proposition Section --- */
+        .value-proposition {
+            padding: var(--section-padding);
+            background: var(--accent-dark);
+            color: white;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .value-item {
+            text-align: center;
+        }
+
+        .value-number {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .value-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+        }
+
+        .value-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        /* --- Final CTA --- */
+        .final-cta {
+            position: relative;
+            padding: 150px 20px;
+            text-align: center;
+            color: white;
+            background-image: url('https://cdn.shopify.com/s/files/1/0603/3021/3434/files/lena-charm-bracelet-18ct-gold-platedamazonite-bracelets-missoma-863593_af576a40-b8fc-4506-a901-40091c052a8d.webp?v=1791578657');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--accent-dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            background: transparent;
+            border: 1px solid #555;
+            color: white;
+            flex: 1;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background: var(--accent-gold);
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 40px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-btn-group { flex-direction: column; }
+            .benefit-row, .benefit-row:nth-child(even) { flex-direction: column; }
+            .benefit-img { width: 100%; height: 300px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; height: auto; }
+            .gallery-item.large { grid-column: span 2; height: 300px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .value-grid { grid-template-columns: 1fr 1fr; }
+            .discount-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            Free Worldwide Shipping on Orders Over $150
+        </div>
+        <div class="nav-container">
+            <a href="#" class="logo">Aurelia.</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Shop All</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">Our Story</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <a href="#">Search</a>
+                <a href="#">Account</a>
+                <a href="#">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Professional Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/2a17a30d2ad8bfd9b5517abacf43af65_6c147726-ced2-4c7e-97b1-f00c527308de.jpg?v=1791027298" alt="Luxury Jewelry Display" class="hero-bg-image">
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content fade-in-section">
+            <span class="hero-badge">Aurelia • Fine Jewelry</span>
+            <h1 class="hero-title">Everyday Elegance<br>Made Extraordinary.</h1>
+            <p class="hero-desc">Modern pieces for the moments that make your story. Find the one that feels like you.</p>
+            <div class="hero-btn-group">
+                <a href="#shop" class="btn-hero">Shop The Collection</a>
+                <a href="#story" class="btn-hero-outline">Our Story</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="problem-statement fade-in-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Aurelia?</h2>
+                <p>Jewelry shouldn't just be worn. It should be felt.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <h3>The Problem</h3>
+                    <p>Mass-produced jewelry lacks soul. It tarnishes quickly, feels heavy, and doesn't tell a story.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>The Solution</h3>
+                    <p>Aurelia combines ethical sourcing with timeless design. Each piece is crafted to last a lifetime.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>The Feeling</h3>
+                    <p>Confidence. Grace. A subtle reminder of your own worth every time you catch your reflection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits / Value Proposition -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefit-row fade-in-section">
+                <div class="benefit-img">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/lena-charm-bracelet-18ct-gold-platedamazonite-bracelets-missoma-863593.webp?v=1790683867" alt="Amazonite Bracelet Detail">
+                </div>
+                <div class="benefit-text">
+                    <h2>Timeless Allure</h2>
+                    <p>Considered details. Effortless elegance. Pieces to wear, love, and keep. Our designs transcend trends, ensuring your jewelry box is filled with staples that never go out of style.</p>
+                    <a href="#" class="btn btn-outline">Discover More</a>
+                </div>
+            </div>
+
+            <div class="benefit-row fade-in-section">
+                <div class="benefit-img">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/1888ee51d527632efffb15f4973079f1_0f53cb18-09f7-45a0-8d4c-6acbad24d183.jpg?v=1791027245" alt="Close up of jewelry texture">
+                </div>
+                <div class="benefit-text">
+                    <h2>A Softer Sparkle</h2>
+                    <p>Thoughtful forms, luminous finishes, and delicate details invite a closer look. Discover jewelry designed to be worn your way—layered, stacked, or standing alone.</p>
+                    <a href="#" class="btn btn-outline">Explore Materials</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Features -->
+    <section class="features fade-in-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Crafted with Intention</h2>
+                <p>Quality you can see and feel.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✦</div>
+                    <h3>18k Gold Plated</h3>
+                    <p>Thick layers of genuine gold over recycled brass ensure longevity and a rich, warm glow.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✦</div>
+                    <h3>Ethically Sourced</h3>
+                    <p>We partner with artisans who are paid fair wages and work in safe, creative environments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✦</div>
+                    <h3>Hypoallergenic</h3>
+                    <p>Safe for sensitive skin. No nickel, no lead, just pure comfort for everyday wear.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get (Visual Gallery) -->
+    <section class="what-you-get fade-in-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Collection</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/70c094e74cf58c391b35691ccc437fe4_a8726aca-a59c-4b53-9d8b-17e590492bd9.jpg?v=1791026296" alt="Gold Chain Detail">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/534effdd0795978918c8c1180c784e0e.jpg?v=1790976026" alt="Stacked Bracelets">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/lena-charm-bracelet-18ct-gold-platedrainbow-moonstone-bracelets-missoma-790856.webp?v=1790683867" alt="Moonstone Bracelet">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/lena-charm-bracelet-18ct-gold-platedrainbow-moonstone-bracelets-missoma-297758.webp?v=1790683867" alt="Moonstone Detail">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.shopify.com/s/files/1/0603/3021/3434/files/lena-charm-bracelet-18ct-gold-platedamazonite-bracelets-missoma-930184.webp?v=1790683867" alt="Amazonite Bracelet">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Discount Section -->
+    <section class="price-discount fade-in-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Exclusive Offers</h2>
+                <p>Luxury within reach. Choose your perfect tier.</p>
+            </div>
+            <div class="discount-grid">
+                <!-- Tier 1 -->
+                <div class="discount-card">
+                    <div class="discount-tier">Starter</div>
+                    <div class="discount-price">$89</div>
+                    <div class="discount-original">$120</div>
+                    <div class="discount-savings">Save 26%</div>
+                    <ul class="discount-features">
+                        <li>1 Signature Piece</li>
+                        <li>Gift Box Included</li>
+                        <li>Free Standard Shipping</li>
+                        <li>30-Day Returns</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Select Plan</a>
+                </div>
+
+                <!-- Tier 2 (Featured) -->
+                <div class="discount-card featured">
+                    <div class="discount-badge">Best Value</div>
+                    <div class="discount-tier">Curated Set</div>
+                    <div class="discount-price">$199</div>
+                    <div class="discount-original">$320</div>
+                    <div class="discount-savings">Save 38%</div>
+                    <ul class="discount-features">
+                        <li>3 Curated Pieces</li>
+                        <li>Premium Gift Box</li>
+                        <li>Free Express Shipping</li>
+                        <li>Priority Support</li>
+                        <li>Lifetime Warranty</li>
+                    </ul>
+                    <a href="#" class="btn">Select Plan</a>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="discount-card">
+                    <div class="discount-tier">Collector's</div>
+                    <div class="discount-price">$349</div>
+                    <div class="discount-original">$550</div>
+                    <div class="discount-savings">Save 37%</div>
+                    <ul class="discount-features">
+                        <li>5 Exclusive Pieces</li>
+                        <li>Velvet Luxury Box</li>
+                        <li>Free Overnight Shipping</li>
+                        <li>Personal Stylist</li>
+                        <li>Lifetime Warranty</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="value-proposition fade-in-section">
+        <div class="container">
+            <div class="section-header" style="color: white;">
+                <h2 style="color: white;">The Aurelia Difference</h2>
+                <p style="color: rgba(255,255,255,0.6);">Numbers that speak for themselves.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-item">
+                    <div class="value-number">15K+</div>
+                    <div class="value-label">Happy Customers</div>
+                    <div class="value-desc">Women worldwide trust Aurelia for their everyday elegance.</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">98%</div>
+                    <div class="value-label">Satisfaction Rate</div>
+                    <div class="value-desc">Our customers love their pieces and come back for more.</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">3yr</div>
+                    <div class="value-label">Average Lifespan</div>
+                    <div class="value-desc">With proper care, our gold plating lasts years longer than competitors.</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">100%</div>
+                    <div class="value-label">Ethical Sourcing</div>
+                    <div class="value-desc">Every piece is traceable from mine to masterpiece.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitor Comparison -->
+    <section class="comparison fade-in-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>How We Compare</h2>
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th style="width: 33%;">Fast Fashion</th>
+                        <th class="aurelia-col" style="width: 34%;">Aurelia Jewelry</th>
+                        <th style="width: 33%;">High-End Luxury</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="cross">✕</span> Tarnishes in weeks</td>
+                        <td class="aurelia-col"><span class="check">✓</span> Long-lasting 18k plating</td>
+                        <td><span class="check">✓</span> Solid Gold</td>
+                    </tr>
+                    <tr>
+                        <td><span class="cross">✕</span> Mass produced</td>
+                        <td class="aurelia-col"><span class="check">✓</span> Small batch artisan made</td>
+                        <td><span class="check">✓</span> Handcrafted</td>
+                    </tr>
+                    <tr>
+                        <td><span class="cross">✕</span> $20 - $50</td>
+                        <td class="aurelia-col"><span class="check">✓</span> Accessible Luxury ($100-$300)</td>
+                        <td><span class="cross">✕</span> $1000+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="cross">✕</span> Generic packaging</td>
+                        <td class="aurelia-col"><span class="check">✓</span> Signature gift experience</td>
+                        <td><span class="check">✓</span> Luxury packaging</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq fade-in-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Common Questions</h2>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Will this tarnish? <span>+</span></div>
+                <div class="faq-answer">With proper care, our 18k gold plated jewelry lasts for years. Avoid contact with perfumes and water to maintain the shine.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is your return policy? <span>+</span></div>
+                <div class="faq-answer">We offer a 30-day hassle-free return policy. If you don't love it, send it back for a full refund.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you ship internationally? <span>+</span></div>
+                <div class="faq-answer">Yes! We ship worldwide. Free shipping is available on orders over $150.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-content fade-in-section">
+            <h2>Make It Yours.</h2>
+            <p style="margin-bottom: 30px; font-size: 1.2rem;">Join thousands of women who have found their signature piece.</p>
+            <a href="#" class="btn" style="background: white; color: black; border-color: white;">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Aurelia</h4>
+                    <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">Jewelry made to be noticed. Delicate details, quiet luxury, and pieces designed to become part of your story.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay in the loop</h4>
+                    <p style="color: #aaa; font-size: 0.8rem; margin-bottom: 10px;">Subscribe for exclusive offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address">
+                        <button type="submit">→</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Aurelia Jewelry. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for Fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('span').textContent = '+';
+                    }
+                });
+                
+                item.classList.toggle('active');
+                const span = item.querySelector('span');
+                span.textContent = item.classList.contains('active') ? '-' : '+';
+            });
+        });
+    </script>
+</body>
+</html>
 
